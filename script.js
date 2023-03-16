@@ -2,6 +2,7 @@ const cdiv = document.getElementById('container');
 const slider = document.getElementById('sizeSlider');
 const currentSize = document.getElementById('currentSize');
 
+
 let size = 16; 
 currentSize.innerHTML = "Current Size: " + size + " x " + size
 
@@ -28,3 +29,15 @@ function buildGrid(size){
 
 buildGrid(size);
 
+
+//Color Picker
+let pixelColor;
+const defaultColor = "#ffffff";
+
+window.addEventListener("load", startup, false);
+
+function startup(){
+    pixelColor = document.getElementById('pixelColor');
+    pixelColor.value = defaultColor;
+    
+}

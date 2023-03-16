@@ -80,3 +80,7 @@ body{
 .pixel{
     background-color: black;
 }
+
+.colorPicker{
+    width: 80%;
+}
