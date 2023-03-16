@@ -10,13 +10,21 @@
 </head>
 <body>
     <h1 class="header">Etch-A-Sketch</h1>
+
     <div class="outer">
+        <div id="menu">
+            <button onclick="getSize()">Change size</button>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="100" value="16" class="slider" id="size">
+            </div>
+        </div>
+
         <div id="container"></div>
     </div>
     
 
 
-    <button onclick="getSize()">Change size</button>
+    
 </body>
 <script src="script.js"></script>
 </html>
