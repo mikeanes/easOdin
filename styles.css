@@ -72,6 +72,11 @@ body{
     margin-bottom: 45px;
 }
 
+.menu-header{
+    font-family: "Rajdhani", serif;
+    color: white;
+}
+
 .pixel{
     background-color: black;
 }

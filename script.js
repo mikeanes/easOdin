@@ -1,14 +1,16 @@
 const cdiv = document.getElementById('container');
+const slider = document.getElementById('sizeSlider');
+const currentSize = document.getElementById('currentSize');
 
-let size; 
+let size = 16; 
+currentSize.innerHTML = "Current Size: " + size + " x " + size
 
-function getSize(){
+slider.oninput = function(){
     cdiv.innerHTML = '';
-    size = "poopoo";
-    while (isNaN(size) || size < 1 || size > 100){
-    size = parseInt(prompt("Enter a size for the grid between 1 - 100:"));
-    }
+    size = "";
+    size = this.value;
     buildGrid(size);
+    currentSize.innerHTML = "Current Size: " + size + " x " + size
 }
 
 function buildGrid(size){
@@ -24,5 +26,5 @@ function buildGrid(size){
     }
 }
 
-buildGrid(16);
+buildGrid(size);
 
