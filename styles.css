@@ -94,9 +94,6 @@ body{
     background: #e84d4d;
     box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.3);
     cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     -webkit-transition: background 0.1s ease-in-out;
     transition: background 0.1s ease-in-out;
   }
