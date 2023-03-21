@@ -51,14 +51,14 @@ body{
     appearance: none;
     width: 30px;
     height: 30px;
-    background: rgb(239, 0, 0);
+    background: #fd3030;
     cursor: pointer;
     border-radius: 50%;
 }
 .slider::-moz-range-thumb{
     width: 30px;
     height: 30px;
-    background: rgb(239, 0, 0);
+    background: #fd3030;
     cursor: pointer;
     border-radius: 50%;
 }
@@ -78,13 +78,22 @@ body{
 }
 
 .colorPicker{
-    width: 80%;
+    width: 100%;
+}
+
+.toggle{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 75%;
+    margin-bottom: -10px;
 }
 
 .toggle-pill-color input[type="checkbox"] {
     display: none;
   }
   .toggle-pill-color input[type="checkbox"] + label {
+    margin-top: 15px;
     display: block;
     position: relative;
     width: 3em;

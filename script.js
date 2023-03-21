@@ -37,7 +37,6 @@ function buildGrid(size){
                 const b = Math.floor(Math.random() * 256);
                 shadeValue = 100;
                 div.style.cssText = `border: 1px solid black; background-color: rgb(${r}, ${g}, ${b}); filter: brightness(${shadeValue}%)`;
-                
             }else if(shading.checked){
                 shadeValue -= 10;
                 div.style.cssText = `border: 1px solid black; background-color: ${currentColor}; filter: brightness(${shadeValue}%)`;
@@ -50,6 +49,17 @@ function buildGrid(size){
     }
 }
 
+//Event listeners to ensure rainbow and shading cannot be toggled simultaneously
+rainbow.addEventListener("click", function(){
+    if(shading.checked && rainbow.checked){
+    shading.checked = false;
+    }
+});
+shading.addEventListener("click", function(){
+    if(rainbow.checked && shading.checked){
+        rainbow.checked = false;
+        }
+});
 
 buildGrid(size);
 
