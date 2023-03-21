@@ -27,30 +27,31 @@ function buildGrid(size){
     cdiv.style.gridTemplateRows = `repeat(${size}, 1fr)`;
     for (let i = 1; i <= (size * size); i++){
         const div = document.createElement('div');
-        div.style.cssText = "border: 1px solid black;";
+        div.style.cssText = "border: 1px solid black; background-color: white;";
         div.onmouseenter = function(){
             let currentColor = div.style.backgroundColor;
-            let shadeValue = parseFloat(div.getAttribute('data-shade')) || 0;
+            //Use filter start with brightness 100% for everything and remove 10% each time
+            let shadeValue = 100;
             if(rainbow.checked){
                 const r = Math.floor(Math.random() * 256);
                 const g = Math.floor(Math.random() * 256);
                 const b = Math.floor(Math.random() * 256);
                 div.style.backgroundColor = `rgb(${r}, ${g}, ${b})`
-                shadeValue = 0;
-            
+                shadeValue = 100;
+                
             }else if(shading.checked){
-                if(shadeValue < 1){
-                    shadeValue += 0.1;
-                }
-                if(div.style.cssText != "border: 1px solid black; background-color: rgb(0, 0, 0);"){
-                div.style.backgroundColor = `rgb(${(1 - shadeValue) * 255}, ${(1 - shadeValue) * 255}, ${(1 - shadeValue) * 255})`;
-                }
-            }
-            else{
+                shadeValue -= 10;
+                div.style.cssText = `border: 1px solid black; background-color: ${currentColor}; filter: brightness(${shadeValue}%)`;
+                
+                
+                
+            
+            }else{
                 div.style.backgroundColor = colorPicker.value;
-                shadeValue = 0;
+                shadeValue = 100;
             }
-            div.setAttribute('data-shade', shadeValue);
+           
+            
         };
         cdiv.appendChild(div);
     }
