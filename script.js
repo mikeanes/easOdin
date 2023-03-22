@@ -20,6 +20,8 @@ const colorPicker = document.getElementById('pixelColor');
     const rainbow = document.getElementById('rainbow');
     //Shading option
     const shading = document.getElementById('shading');
+    //Lighten option
+    const lighten = document.getElementById('lighten');
 
 //Function to build grid
 function buildGrid(size){
@@ -39,6 +41,9 @@ function buildGrid(size){
                 div.style.cssText = `border: 1px solid black; background-color: rgb(${r}, ${g}, ${b}); filter: brightness(${shadeValue}%)`;
             }else if(shading.checked){
                 shadeValue -= 10;
+                div.style.cssText = `border: 1px solid black; background-color: ${currentColor}; filter: brightness(${shadeValue}%)`;
+            }else if(lighten.checked){
+                shadeValue += 100;
                 div.style.cssText = `border: 1px solid black; background-color: ${currentColor}; filter: brightness(${shadeValue}%)`;
             }else{
                 shadeValue = 100;
