@@ -29,41 +29,58 @@ function buildGrid(size){
     cdiv.style.gridTemplateRows = `repeat(${size}, 1fr)`;
     for (let i = 1; i <= (size * size); i++){
         const div = document.createElement('div');
-        div.style.cssText = "border: 1px solid black; background-color: white;";
-        let shadeValue = 100;
+        div.style.cssText = "border: 1px solid black; background-color: rgb(255, 255, 255);";
         div.onmouseenter = function(){
             let currentColor = div.style.backgroundColor;
             if(rainbow.checked){
                 const r = Math.floor(Math.random() * 256);
                 const g = Math.floor(Math.random() * 256);
                 const b = Math.floor(Math.random() * 256);
-                shadeValue = 100;
-                div.style.cssText = `border: 1px solid black; background-color: rgb(${r}, ${g}, ${b}); filter: brightness(${shadeValue}%)`;
+                div.style.cssText = `border: 1px solid black; background-color: rgb(${r}, ${g}, ${b})`;
             }else if(shading.checked){
-                shadeValue -= 10;
-                div.style.cssText = `border: 1px solid black; background-color: ${currentColor}; filter: brightness(${shadeValue}%)`;
+                let rgb = currentColor.match(/\d+/g);
+                let newR = parseInt(rgb[0]) - 25.5;
+			    let newG = parseInt(rgb[1]) - 25.5;
+			    let newB = parseInt(rgb[2]) - 25.5;
+                newR = Math.max(0, Math.min(255, newR)); 
+			    newG = Math.max(0, Math.min(255, newG)); 
+			    newB = Math.max(0, Math.min(255, newB));
+                div.style.cssText = `border: 1px solid black; background-color: rgb(${newR}, ${newG}, ${newB})`;
             }else if(lighten.checked){
-                shadeValue += 100;
-                div.style.cssText = `border: 1px solid black; background-color: ${currentColor}; filter: brightness(${shadeValue}%)`;
+                let rgb = currentColor.match(/\d+/g);
+                let newR = parseInt(rgb[0]) + 25.5;
+			    let newG = parseInt(rgb[1]) + 25.5;
+			    let newB = parseInt(rgb[2]) + 25.5;
+                newR = Math.max(0, Math.min(255, newR)); 
+			    newG = Math.max(0, Math.min(255, newG)); 
+			    newB = Math.max(0, Math.min(255, newB));
+                div.style.cssText = `border: 1px solid black; background-color: rgb(${newR}, ${newG}, ${newB})`;
             }else{
-                shadeValue = 100;
-                div.style.cssText = `border: 1px solid black; background-color: ${colorPicker.value}; filter: brightness(${shadeValue}%)`;
+                div.style.cssText = `border: 1px solid black; background-color: ${colorPicker.value}`;
             }
         };
         cdiv.appendChild(div);
     }
 }
 
-//Event listeners to ensure rainbow and shading cannot be toggled simultaneously
+//Event listeners to ensure rainbow, shading and lighten cannot be toggled simultaneously
 rainbow.addEventListener("click", function(){
-    if(shading.checked && rainbow.checked){
+    if(rainbow.checked){
     shading.checked = false;
+    lighten.checked = false;
     }
 });
 shading.addEventListener("click", function(){
-    if(rainbow.checked && shading.checked){
+    if(shading.checked){
         rainbow.checked = false;
+        lighten.checked = false;
         }
+});
+lighten.addEventListener("click", function(){
+    if(lighten.checked){
+        rainbow.checked = false;
+        shading.checked = false;
+    }
 });
 
 buildGrid(size);
